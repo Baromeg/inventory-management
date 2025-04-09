@@ -8,6 +8,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { StockAdjustmentsModule } from './stock-adjustments/stock-adjustments.module';
+import { WarehousesModule } from './warehouses/warehouses.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { StockAdjustmentsModule } from './stock-adjustments/stock-adjustments.mo
     }),
     ProductsModule,
     StockAdjustmentsModule,
+    WarehousesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

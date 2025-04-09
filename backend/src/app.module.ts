@@ -10,6 +10,7 @@ import { join } from 'path';
 import { StockAdjustmentsModule } from './stock-adjustments/stock-adjustments.module';
 import { WarehousesModule } from './warehouses/warehouses.module';
 import { StockLevelsModule } from './stock-levels/stock-levels.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { StockLevelsModule } from './stock-levels/stock-levels.module';
     StockAdjustmentsModule,
     WarehousesModule,
     StockLevelsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

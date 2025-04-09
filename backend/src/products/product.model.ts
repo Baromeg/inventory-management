@@ -9,10 +9,13 @@ import {
   Column,
   DataType,
   Default,
+  HasMany,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
+import { StockAdjustment } from 'src/stock-adjustments/stock-adjustment.model';
+import { StockLevel } from 'src/stock-levels/stock-level.model';
 
 @ObjectType()
 @Table({ timestamps: true })
@@ -34,6 +37,14 @@ export class Product extends Model {
   @Field(() => Int)
   @Column({ type: DataType.INTEGER, defaultValue: 0 })
   declare stock: number;
+
+  @Field(() => [StockAdjustment], { nullable: 'itemsAndList' })
+  @HasMany(() => StockAdjustment)
+  declare stockAdjustments: StockAdjustment[];
+
+  @Field(() => [StockLevel], { nullable: 'itemsAndList' })
+  @HasMany(() => StockLevel)
+  declare stockLevels: StockLevel[];
 
   @Field(() => GraphQLISODateTime)
   @Column({ type: DataType.DATE })

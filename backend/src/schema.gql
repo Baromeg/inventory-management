@@ -23,12 +23,46 @@ type Product {
   id: ID!
   name: String!
   stock: Int!
+  stockAdjustments: [StockAdjustment]
+  stockLevels: [StockLevel]
   updatedAt: DateTime!
 }
 
 type Query {
   product(id: ID!): Product!
   products: [Product!]!
+}
+
+type StockAdjustment {
+  createdAt: DateTime!
+  id: ID!
+  product: Product!
+  productId: ID!
+  quantity: Int!
+  updatedAt: DateTime!
+  user: User!
+  userId: ID!
+  warehouse: Warehouse!
+  warehouseId: ID!
+}
+
+type StockLevel {
+  createdAt: DateTime!
+  id: ID!
+  product: Product!
+  productId: ID!
+  quantity: Int!
+  updatedAt: DateTime!
+  warehouse: Warehouse!
+  warehouseId: ID!
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  role: String!
+  updatedAt: DateTime!
 }
 
 type Warehouse {

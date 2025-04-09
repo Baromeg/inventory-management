@@ -32,14 +32,16 @@ export class StockLevel extends Model<StockLevel> {
   @BelongsTo(() => Product)
   declare product: Product;
 
+  @Field(() => ID)
   @ForeignKey(() => Product)
-  @Column({ type: DataType.UUID })
+  @Column({ type: DataType.UUID, allowNull: false })
   declare productId: string;
 
   @Field(() => Warehouse)
   @BelongsTo(() => Warehouse)
   declare warehouse: Warehouse;
 
+  @Field(() => ID)
   @ForeignKey(() => Warehouse)
   @Column({ type: DataType.UUID })
   declare warehouseId: string;

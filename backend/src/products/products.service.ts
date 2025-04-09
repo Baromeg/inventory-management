@@ -1,10 +1,10 @@
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Product } from './product.model';
 import { CreateProductInput } from './dto/create-product.input';
 
 @Injectable()
-export class ProductsService implements OnModuleInit {
+export class ProductsService {
   private readonly logger = new Logger(ProductsService.name);
 
   constructor(
@@ -12,24 +12,12 @@ export class ProductsService implements OnModuleInit {
     private productModel: typeof Product,
   ) {}
 
-  async onModuleInit() {
-    const count = await this.productModel.count();
-    if (count === 0) {
-      await this.productModel.create({
-        name: 'Example Product',
-        description: 'This is a seeded product',
-        stock: 100,
-      });
-      console.log('Seeded initial product');
-    }
-  }
-
   async findAll(): Promise<Product[]> {
     this.logger.log('Fetching all products');
 
     const products = await this.productModel.findAll();
 
-    return products.map((product) => product.get());
+    return products;
   }
 
   async findById(id: string): Promise<Product> {
@@ -43,7 +31,7 @@ export class ProductsService implements OnModuleInit {
       throw new Error(`Product with ID ${id} not found`);
     }
 
-    return product.get();
+    return product;
   }
 
   async create(input: CreateProductInput): Promise<Product> {
@@ -55,6 +43,6 @@ export class ProductsService implements OnModuleInit {
       stock: input.stock ?? 0,
     });
 
-    return product.get();
+    return product;
   }
 }

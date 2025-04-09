@@ -11,6 +11,7 @@ import { StockAdjustmentsModule } from './stock-adjustments/stock-adjustments.mo
 import { WarehousesModule } from './warehouses/warehouses.module';
 import { StockLevelsModule } from './stock-levels/stock-levels.module';
 import { UsersModule } from './users/users.module';
+import { SeedModule } from './database/seed.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { UsersModule } from './users/users.module';
     WarehousesModule,
     StockLevelsModule,
     UsersModule,
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

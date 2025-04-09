@@ -6,6 +6,11 @@ import {
   ObjectType,
 } from '@nestjs/graphql';
 import {
+  CreationOptional,
+  InferAttributes,
+  InferCreationAttributes,
+} from 'sequelize';
+import {
   BelongsTo,
   Column,
   DataType,
@@ -21,12 +26,18 @@ import { Warehouse } from 'src/warehouses/warehouse.model';
 
 @ObjectType()
 @Table({ timestamps: true })
-export class StockAdjustment extends Model<StockAdjustment> {
+export class StockAdjustment extends Model<
+  InferAttributes<StockAdjustment>,
+  InferCreationAttributes<
+    StockAdjustment,
+    { omit: 'product' | 'warehouse' | 'user' }
+  >
+> {
   @Field(() => ID)
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({ type: DataType.UUID })
-  declare id: string;
+  declare id: CreationOptional<string>;
 
   @Field(() => Int)
   @Column({ type: DataType.INTEGER, allowNull: false })
@@ -61,9 +72,9 @@ export class StockAdjustment extends Model<StockAdjustment> {
 
   @Field(() => GraphQLISODateTime)
   @Column({ type: DataType.DATE })
-  declare createdAt: Date;
+  declare createdAt: CreationOptional<Date>;
 
   @Field(() => GraphQLISODateTime)
   @Column({ type: DataType.DATE })
-  declare updatedAt: Date;
+  declare updatedAt: CreationOptional<Date>;
 }

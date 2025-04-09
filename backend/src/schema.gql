@@ -8,6 +8,13 @@ input CreateProductInput {
   stock: Int
 }
 
+input CreateStockAdjustmentInput {
+  productId: ID!
+  quantity: Int!
+  userId: ID!
+  warehouseId: ID!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -15,6 +22,7 @@ scalar DateTime
 
 type Mutation {
   createProduct(input: CreateProductInput!): Product!
+  createStockAdjustment(input: CreateStockAdjustmentInput!): StockAdjustment!
 }
 
 type Product {
@@ -31,6 +39,8 @@ type Product {
 type Query {
   product(id: ID!): Product!
   products: [Product!]!
+  stockAdjustment(id: ID!): StockAdjustment!
+  stockAdjustments: [StockAdjustment!]!
 }
 
 type StockAdjustment {

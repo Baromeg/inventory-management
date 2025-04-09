@@ -8,15 +8,23 @@ import {
 } from 'sequelize-typescript';
 import { Field, ObjectType, ID } from '@nestjs/graphql';
 import { GraphQLISODateTime } from '@nestjs/graphql';
+import {
+  CreationOptional,
+  InferAttributes,
+  InferCreationAttributes,
+} from 'sequelize';
 
 @ObjectType()
 @Table({ timestamps: true })
-export class Warehouse extends Model<Warehouse> {
+export class Warehouse extends Model<
+  InferAttributes<Warehouse>,
+  InferCreationAttributes<Warehouse>
+> {
   @Field(() => ID)
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({ type: DataType.UUID })
-  declare id: string;
+  declare id: CreationOptional<string>;
 
   @Field()
   @Column({ type: DataType.STRING, allowNull: false })
@@ -28,9 +36,9 @@ export class Warehouse extends Model<Warehouse> {
 
   @Field(() => GraphQLISODateTime)
   @Column({ type: DataType.DATE })
-  declare createdAt: Date;
+  declare createdAt: CreationOptional<Date>;
 
   @Field(() => GraphQLISODateTime)
   @Column({ type: DataType.DATE })
-  declare updatedAt: Date;
+  declare updatedAt: CreationOptional<Date>;
 }

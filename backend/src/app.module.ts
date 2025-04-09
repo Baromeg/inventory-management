@@ -7,6 +7,7 @@ import { ProductsModule } from './products/products.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
+import { StockAdjustmentsModule } from './stock-adjustments/stock-adjustments.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { join } from 'path';
       playground: true,
     }),
     ProductsModule,
+    StockAdjustmentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

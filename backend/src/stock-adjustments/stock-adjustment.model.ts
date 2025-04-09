@@ -6,34 +6,37 @@ import {
   ObjectType,
 } from '@nestjs/graphql';
 import {
+  BelongsTo,
   Column,
   DataType,
   Default,
+  ForeignKey,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
+import { Product } from 'src/products/product.model';
 
 @ObjectType()
 @Table({ timestamps: true })
-export class Product extends Model {
+export class StockAdjustment extends Model<StockAdjustment> {
   @Field(() => ID)
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({ type: DataType.UUID })
   declare id: string;
 
-  @Field()
-  @Column({ type: DataType.STRING, allowNull: false })
-  declare name: string;
-
-  @Field({ nullable: true })
-  @Column({ type: DataType.TEXT, allowNull: true })
-  declare description?: string;
-
   @Field(() => Int)
-  @Column({ type: DataType.INTEGER, defaultValue: 0 })
-  declare stock: number;
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  declare quantity: number;
+
+  @Field(() => Product)
+  @BelongsTo(() => Product)
+  declare product: Product;
+
+  @ForeignKey(() => Product)
+  @Column({ type: DataType.UUID, allowNull: false })
+  declare productId: string;
 
   @Field(() => GraphQLISODateTime)
   @Column({ type: DataType.DATE })

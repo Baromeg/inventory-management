@@ -9,6 +9,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { StockAdjustmentsModule } from './stock-adjustments/stock-adjustments.module';
 import { WarehousesModule } from './warehouses/warehouses.module';
+import { StockLevelsModule } from './stock-levels/stock-levels.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { WarehousesModule } from './warehouses/warehouses.module';
     ProductsModule,
     StockAdjustmentsModule,
     WarehousesModule,
+    StockLevelsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

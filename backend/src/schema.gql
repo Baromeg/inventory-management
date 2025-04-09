@@ -30,3 +30,11 @@ type Query {
   product(id: ID!): Product!
   products: [Product!]!
 }
+
+type Warehouse {
+  createdAt: DateTime!
+  id: ID!
+  location: String!
+  name: String!
+  updatedAt: DateTime!
+}

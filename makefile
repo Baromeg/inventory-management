@@ -2,7 +2,7 @@ start:
 	docker-compose --env-file backend/.env up -d --build
 
 dev: 
-	docker-compose --env-file backend/.env up
+	docker compose up --build
 
 stop: 
 	docker-compose down

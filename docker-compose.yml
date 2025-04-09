@@ -1,4 +1,19 @@
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    command: pnpm dev --host
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - node_modules_frontend:/app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+
   db:
     image: postgres:15
     container_name: inventory_db
@@ -17,6 +32,7 @@ services:
     build:
       context: ./backend
       dockerfile: dockerfile
+    command: pnpm start:dev
     container_name: inventory_backend
     ports:
       - "3000:3000"
@@ -26,7 +42,9 @@ services:
       - db
     volumes:
       - ./backend:/app
-      - /app/node_modules
+      - node_modules_backend:/app/node_modules
 
 volumes:
   pgdata:
+  node_modules_backend:
+  node_modules_frontend:

@@ -27,6 +27,15 @@ export class StockAdjustmentsService {
     return adjustment;
   }
 
+  async findByProductId(productId: string): Promise<StockAdjustment[]> {
+    Logger.log(
+      `Querying stock adjustments for productId: ${productId}`,
+      'StockAdjustmentsService',
+    );
+
+    return this.stockAdjustmentModel.findAll({ where: { productId } });
+  }
+
   async create(input: CreateStockAdjustmentInput): Promise<StockAdjustment> {
     return this.stockAdjustmentModel.create(input);
   }

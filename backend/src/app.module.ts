@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AppController } from './app.controller';
@@ -20,7 +20,7 @@ import { join } from 'path';
       database: process.env.DB_NAME,
       autoLoadModels: true,
       synchronize: true, // for dev only!
-      logging: console.log,
+      logging: (msg) => Logger.log(msg, 'Sequelize'),
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

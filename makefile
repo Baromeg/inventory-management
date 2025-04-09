@@ -1,7 +1,10 @@
-dev:
-	docker-compose up --build
+start: 
+	docker-compose --env-file backend/.env up -d --build
 
-down:
+dev: 
+	docker-compose --env-file backend/.env up
+
+stop: 
 	docker-compose down
 
 logs:

@@ -1,14 +1,18 @@
 # 🧾 Inventory Management System
 
-A full-stack inventory management application built with **NestJS**, **Sequelize**, **PostgreSQL**, and a **React + Apollo Client** frontend.
+A backend-focused learning project designed to **master data handling and server-side development** with **Sequelize (first-time use)**, **NestJS**, **GraphQL**, and **Dataloader**.
 
-Designed to simulate a real-world engineering environment with:
+This project reflects my commitment to deepening my understanding of **real-world data flows**, **relational data modelling**, and **performance optimisation techniques** such as **N+1 mitigation** using **Dataloader**.
 
-- Type-safe GraphQL API
-- Dataloader for N+1 mitigation
-- Docker-based development workflow
-- Feature-first architecture and hot reload support
-- Production-style seed data and resolver structure
+Key aspects of this project include:
+
+- Learning and applying **Sequelize ORM** with **PostgreSQL** for relational data management
+- Building a **GraphQL API** with **NestJS**, designed to reflect production practices
+- Mitigating **N+1 performance issues** with **Dataloader**, improving query efficiency
+- Structuring a **Dockerised full-stack environment** to simulate professional dev workflows
+- Adding **seed data** and **relational queries** to reflect complex, production-like scenarios
+
+This project demonstrates my ability to **quickly adopt unfamiliar technologies**, **apply them in a realistic context**, and **iterate toward production-quality solutions**.
 
 ---
 
